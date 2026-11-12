@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Auto Evaluación de Peligros y Riesgos por puesto de trabajo · Biblioteca Departamental Jorge Garcés Borrero</title>
+<style>
+:root{--bg1:#D8C7A3;--bg2:#fff;--sand:#B89A6A;--sky:#0B86D9;--navy:#1F3A5F;--green:#2F6B3A;--txt:#4A4A4A;--card:#fff;--red:#B3412F;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg2:#14202f;--bg1:#2a2d33;--card:#1d2b3d;--txt:#e8e4da}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--txt);background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%);min-height:100vh}
+header{background:linear-gradient(135deg,var(--navy),#16304f);color:#fff;padding:18px 24px;border-bottom:5px solid var(--sand);box-shadow:0 10px 24px -10px #0008}
+header h1{margin:0;font-size:clamp(17px,3vw,26px)}header h2{margin:4px 0 0;font-size:clamp(14px,2.2vw,18px);color:#D8C7A3;font-weight:600}header p{margin:6px 0 0;font-size:12px;opacity:.85}
+main{max-width:1200px;margin:0 auto;padding:18px}
+.card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:16px;border-top:4px solid var(--sky);box-shadow:0 20px 26px -14px rgba(31,58,95,.55),0 3px 0 rgba(184,154,106,.5)}
+.card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--sky)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));perspective:1000px}
+.k{background:var(--card);border-radius:14px;padding:14px;border-top:4px solid var(--sky);box-shadow:0 18px 24px -14px rgba(31,58,95,.55),0 3px 0 rgba(184,154,106,.5);transform:rotateX(3deg);transition:.25s}.k:hover{transform:none;translate:0 -4px}
+.big{font-size:32px;font-weight:700;color:var(--navy)}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .big{color:#fff}}
+label{font-size:13px;font-weight:600;display:block;margin:8px 0 3px}
+input[type=text],select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid var(--sand);background:var(--card);color:var(--txt);font:inherit}
+textarea{min-height:80px}.f{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.btn{border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;color:#fff;background:var(--navy);box-shadow:0 4px 0 #0f2238}.btn.g{background:var(--green);box-shadow:0 4px 0 #1c4425}.btn.s{background:var(--sand);box-shadow:0 4px 0 #8a7048}.btn.r{background:var(--red);box-shadow:0 4px 0 #7d2b1e}.btn:active{transform:translateY(3px);box-shadow:none}
+.two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.def{border-radius:10px;padding:12px;font-size:14px}
+.cls{margin:16px 0 6px;color:var(--navy);border-left:6px solid var(--sand);padding-left:10px}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cls{color:#fff}}
+.hz{background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:5px solid #bbb;box-shadow:0 8px 14px -10px rgba(31,58,95,.6)}.hz.on{border-left-color:var(--sky)}
+.hz label{display:flex;gap:8px;margin:0}.tag{font-size:11px;background:var(--green);color:#fff;border-radius:6px;padding:1px 6px;margin-left:6px}
+.rk{font-size:13px;margin:4px 0 0 26px}.rt{margin:8px 0 0 26px}.res{margin-top:8px;padding:8px;border-radius:8px;color:#fff;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px;border-bottom:1px solid #0002;text-align:left}th{color:var(--sky)}
+.br{display:grid;grid-template-columns:minmax(90px,1.2fr) 3fr 30px;gap:8px;align-items:center;font-size:12px;margin:5px 0}.bar{height:14px;background:#0001;border-radius:7px;overflow:hidden}.bar i{display:block;height:100%;border-radius:7px;box-shadow:0 3px 0 #0003}
+.note{font-size:12px;opacity:.85}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body>
+<header><h1>Auto Evaluación de Peligros y Riesgos por puesto de trabajo</h1><h2>Biblioteca Departamental Jorge Garcés Borrero</h2>
+<p>Participación de los trabajadores · Decreto 1072 de 2015, art. 2.2.4.6.15 · Metodología GTC 45</p></header>
+<main>
+<div class="card" style="border-top-color:var(--green)"><h3>Antes de empezar: ¿qué es un peligro y qué es un riesgo?</h3>
+<div class="two"><div class="def" style="background:#0B86D922"><b>PELIGRO</b> = la fuente, situación o acto que puede hacerle daño. Es la “causa”.<br><i>Ejemplo: el piso mojado después del aseo.</i></div>
+<div class="def" style="background:#2F6B3A22"><b>RIESGO</b> = qué tan probable es que el peligro le haga daño y qué tan grave sería ese daño. Es la “consecuencia posible”.<br><i>Ejemplo: caerse y fracturarse la muñeca.</i></div></div>
+<table style="margin-top:10px"><tr><th>Peligro en la biblioteca</th><th>Riesgo</th><th>Daño posible</th></tr>
+<tr><td>Polvo y hongos en libros antiguos</td><td>Inhalar agentes biológicos</td><td>Alergias, asma</td></tr>
+<tr><td>Escalera de mano para alcanzar estantes altos</td><td>Caída de altura</td><td>Fracturas, golpes en cabeza</td></tr>
+<tr><td>Cajas de libros pesadas</td><td>Sobreesfuerzo al levantarlas</td><td>Lumbalgia, hernia</td></tr>
+<tr><td>Usuarios molestos o agresivos</td><td>Estrés y agresión verbal</td><td>Ansiedad, agotamiento</td></tr></table>
+<p class="note"><b>Cómo calificar cada peligro (GTC 45):</b> <b>Deficiencia</b>: qué tan bien funcionan los controles que ya existen. <b>Exposición</b>: cuánto tiempo o cuántas veces se expone. <b>Consecuencia</b>: qué tan grave sería el peor daño realista. El sistema calcula el nivel de riesgo (I a IV) por usted.</p></div>
+
+<div class="card"><h3>1. Sus datos</h3><div class="f">
+<div><label>Nombre completo</label><input type="text" id="nom" autocomplete="off"></div>
+<div><label>Cédula (solo números)</label><input type="text" id="cc" inputmode="numeric" autocomplete="off"></div>
+<div><label>Tipo de vinculación</label><select id="vin"><option value="">Seleccione…</option><option>Personal de planta</option><option>Contratista</option></select></div>
+<div><label>Área a la que pertenece (escríbala)</label><input type="text" id="area" autocomplete="off" placeholder="Ej.: Circulación y préstamo" oninput="clearTimeout(window.tm);window.tm=setTimeout(drawH,500)"></div>
+<div><label>Cargo</label><input type="text" id="cargo" oninput="drawH()"></div></div>
+<label>Describa brevemente qué hace en su puesto de trabajo (tareas, equipos, lugares)</label>
+<textarea id="desc" oninput="clearTimeout(window.tm);window.tm=setTimeout(drawH,500)" placeholder="Ej.: Atiendo usuarios en el mostrador, presto y recibo libros, los ubico en los estantes y uso el computador para registrar préstamos."></textarea></div>
+
+<div class="card"><h3>2. Peligros y riesgos de su puesto</h3>
+<p class="note">Marque solo los peligros que SÍ existen en su puesto. Los que tienen la etiqueta “Sugerido” se relacionan con su área, cargo y la descripción que escribió; revise también los demás. Si falta alguno, agréguelo abajo.</p>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="only" onchange="drawH()"> Ver solo los sugeridos para mi puesto</label>
+<div id="live" class="note" style="margin:8px 0"></div><div id="hz"></div>
+<div class="card" style="margin:14px 0 0;border-top-color:var(--sand)"><h3>¿Falta un peligro? Agréguelo</h3><div class="f">
+<div><label>Clasificación</label><select id="ccl"></select></div><div><label>Peligro (la fuente)</label><input type="text" id="cp"></div><div><label>Riesgo (qué podría pasar)</label><input type="text" id="cr"></div></div>
+<button class="btn s" style="margin-top:10px" onclick="addCu()">+ Agregar peligro</button></div></div>
+
+<div class="card" style="text-align:center"><label style="display:flex;gap:8px;justify-content:center;font-weight:400"><input type="checkbox" id="cons"> Autorizo el tratamiento de mis datos personales para el SG-SST de la biblioteca (Ley 1581 de 2012).</label>
+<button class="btn g" style="margin-top:12px;font-size:16px" onclick="guardar()">Guardar mi autoevaluación</button></div>
+
+<div id="ind"></div>
+<div class="card"><h3>Registros guardados y descargas</h3><div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+<button class="btn g" onclick="xlsx()">⬇ Excel (evaluaciones, trabajadores e indicadores)</button><button class="btn g" onclick="csv()">⬇ CSV</button><button class="btn r" onclick="borrar()">Borrar todos los registros</button></div>
+<div id="reg" style="overflow-x:auto"></div></div>
+<p class="note">Esta herramienta recoge la percepción de los trabajadores como insumo para la matriz de peligros y valoración de riesgos (Decreto 1072 de 2015, art. 2.2.4.6.15). La matriz oficial debe ser revisada y validada por el responsable del SG-SST con el COPASST. Los registros se guardan en este navegador; descargue el Excel para consolidarlos.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id),esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const AR={"Dirección y administración":"D","Circulación, préstamo y atención al usuario":"C","Procesamiento técnico y catalogación":"T","Sala infantil y de lectura":"I","Archivo, depósito y conservación":"A","Sistemas y sala de cómputo":"S","Servicios generales y aseo":"L","Mantenimiento":"M","Vigilancia y seguridad":"V","Eventos y auditorio":"E","Otra":""};
+const CL=["Biológico","Físico","Químico","Psicosocial","Biomecánico","Condiciones de seguridad","Fenómenos naturales"];
+const H=`Biológico|Polvo, ácaros y hongos en libros y documentos antiguos|Inhalación de agentes biológicos: alergias, rinitis, asma|ATCL|libro,archivo,polvo,document
+Biológico|Contacto cercano con muchos usuarios|Contagio de enfermedades infecciosas (gripe, COVID-19)|CIVE|usuario,público,atención
+Biológico|Residuos, baños y áreas de aseo|Infecciones y dermatitis por contacto con residuos|L|aseo,baño,residuo,limpi
+Físico|Iluminación deficiente o con reflejos|Fatiga visual y dolor de cabeza|*|lectura,pantalla,catalog
+Físico|Ruido de público, eventos y equipos|Estrés y molestias auditivas|ICE|ruido,evento,sala
+Físico|Temperatura o ventilación inadecuada en depósitos y salas|Estrés térmico, malestar y fatiga|ALD|depósito,calor
+Físico|Radiación no ionizante de pantallas y equipos|Fatiga visual y cefalea|STDC|computador,pantalla,digit
+Químico|Productos de limpieza (cloro, desinfectantes)|Irritación, intoxicación y quemaduras|L|limpi,aseo,desinfect
+Químico|Insecticidas y productos de conservación documental|Intoxicación por inhalación|ATM|fumig,conserv
+Químico|Tintas, tóner, adhesivos y solventes|Irritación de ojos y piel, alergias|TDS|impres,toner,pegante,adhesiv
+Psicosocial|Atención a usuarios difíciles o agresivos|Estrés, agresión verbal y desgaste emocional|CIVE|usuario,atención,público
+Psicosocial|Carga mental, plazos y ritmo de trabajo|Estrés y fatiga mental|*|meta,plazo,informe
+Psicosocial|Trabajo en soledad, turnos u horarios extendidos|Estrés, sensación de inseguridad y fatiga|VAL|turno,nocturn,solo
+Psicosocial|Conflictos o malas relaciones en el trabajo|Estrés y deterioro del clima laboral|*|
+Biomecánico|Postura sentada prolongada (escritorio, computador)|Dolor de cuello, espalda y lesiones lumbares|DTSC|computador,escritorio,digit,oficina
+Biomecánico|Movimientos repetitivos de manos y muñecas (digitar, escanear, sellar)|Túnel del carpo y tendinitis|TSCD|digit,escane,sell,registr
+Biomecánico|Levantar y trasladar cajas de libros, carros y mobiliario|Lumbalgia y lesiones de espalda|ACTLE|caja,carga,libro,trasl,carro,mueble
+Biomecánico|Estar de pie mucho tiempo, agacharse o estirarse a los estantes|Fatiga, várices y lesiones de hombro y espalda|CIALV|pie,estante,ubic,acomod,mostrador
+Condiciones de seguridad|Pisos resbalosos, desniveles y escaleras|Caídas, esguinces y fracturas|*|piso,escalera,aseo
+Condiciones de seguridad|Uso de escaleras de mano o trabajo en alturas (estantes altos)|Caída de altura y golpes|ACTMI|escalera,alto,estante,altura
+Condiciones de seguridad|Estanterías sobrecargadas o sin anclaje|Caída de objetos, golpes y aplastamiento|ACTI|estante,anaquel
+Condiciones de seguridad|Cables, tomas sobrecargadas y equipos eléctricos|Choque eléctrico, quemaduras e incendio|*|cable,toma,eléctric
+Condiciones de seguridad|Gran cantidad de papel y material combustible|Incendio, quemaduras e intoxicación por humo|*|
+Condiciones de seguridad|Cortadoras, guillotinas, bisturí y elementos cortopunzantes|Cortes y atrapamientos|TMI|cort,guillotin
+Condiciones de seguridad|Herramientas manuales y equipos de mantenimiento|Golpes, heridas y proyección de partículas|M|herramienta,mantenim,repar
+Condiciones de seguridad|Aglomeración de público en eventos y evacuaciones|Golpes y lesiones por pánico o empujones|EVC|evento,aforo,auditorio
+Condiciones de seguridad|Robos, atracos o agresiones por terceros|Lesiones físicas y trauma emocional|VCD|vigil,seguridad,caja
+Condiciones de seguridad|Desplazamientos en moto, vehículo o a pie por diligencias|Accidente de tránsito|DMV|mensajer,moto,vehículo,conducir,diligencia
+Fenómenos naturales|Sismo|Atrapamiento, golpes por caída de estantes y estructuras|*|
+Fenómenos naturales|Lluvias, goteras e inundaciones|Resbalones, choque eléctrico y daño del acervo|ALM|lluvia,gotera`.split("\n").map((l,i)=>{const[c,p,r,a,k]=l.split("|");return{id:"H"+(i+1),c,p,r,a:a==="*"?"*":a,k:(k||"").split(",").filter(Boolean)}});
+const OP={nd:[[2,"Bajo: hay controles y funcionan"],[6,"Medio: hay controles pero fallan a veces"],[10,"Alto: no hay controles o no sirven"]],ne:[[1,"Esporádica (pocas veces al año)"],[2,"Ocasional (algunas veces al mes)"],[3,"Frecuente (varias veces al día)"],[4,"Continua (casi toda la jornada)"]],nc:[[10,"Leve: primeros auxilios"],[25,"Grave: incapacidad temporal"],[60,"Muy grave: incapacidad permanente o enfermedad laboral"],[100,"Mortal o catastrófico"]]};
+const LV={I:["No aceptable","Situación crítica: intervención urgente","#B3412F"],II:["No aceptable o aceptable con control específico","Corregir y adoptar medidas de control de inmediato","#D9822B"],III:["Mejorable","Mejorar si es posible y justificar la intervención","#B89A6A"],IV:["Aceptable","Mantener controles y verificar periódicamente","#2F6B3A"]};
+const calc=s=>{if(!(s.nd&&s.ne&&s.nc))return null;const np=s.nd*s.ne,nr=np*s.nc;return{np,nr,npi:np>=24?"Muy alto":np>=10?"Alto":np>=6?"Medio":"Bajo",niv:nr>=600?"I":nr>=150?"II":nr>=40?"III":"IV"}};
+const META={p:58,c:80};let S={sel:{},cu:[]},REG=[];
+try{REG=JSON.parse(localStorage.getItem("peligros_reg")||"[]")}catch(e){}
+const persist=()=>{try{localStorage.setItem("peligros_reg",JSON.stringify(REG))}catch(e){alert("No se pudo guardar de forma permanente en este navegador. Descargue el Excel antes de cerrar la página.")}};
+
+$("ccl").innerHTML=CL.map(c=>`<option>${c}</option>`).join("");
+const akey=t=>{t=t.toLowerCase();const R=[["D",/direcci|admin|gerenc|coordinaci|secretar|contab|talento/],["C",/circulaci|pr[eé]stamo|atenci|usuario|mostrador|referencia/],["T",/procesamiento|cat[aá]log|t[eé]cnic|clasific/],["I",/infantil|lectura|sala/],["A",/archivo|dep[oó]sito|conservaci|restauraci|hemerot/],["S",/sistema|c[oó]mputo|tecnolog|inform[aá]t/],["L",/aseo|servicios generales|limpie|cafeter/],["M",/mantenim/],["V",/vigil|seguridad/],["E",/evento|auditorio|cultur|extensi/]];return R.filter(r=>r[1].test(t)).map(r=>r[0]).join("")};
+const nz=s=>s.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," "),ORIG={};
+const na_=a=>cnt(a,i=>{const k=nz(i.a);ORIG[k]=ORIG[k]||i.a.trim();return k}).map(([k,v])=>[ORIG[k],v]);
+function sug(h){const k=akey($("area").value),t=($("cargo").value+" "+$("desc").value).toLowerCase();return h.cu?true:h.a=="*"||[...k].some(c=>h.a.includes(c))||h.k.some(w=>t.includes(w))}
+const sl=(id,f,v)=>`<select onchange="st('${id}','${f}',this.value)"><option value="">Seleccione…</option>${OP[f].map(o=>`<option value="${o[0]}" ${v==o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>`;
+function drawH(){const only=$("only").checked,all=H.concat(S.cu);let h="",n=0,q=0,lv={I:0,II:0,III:0,IV:0};
+CL.forEach(c=>{const L=all.filter(x=>x.c==c&&(!only||sug(x)||S.sel[x.id])).map((x,i)=>[x,i]).sort((a,b)=>(sug(b[0])-sug(a[0]))||a[1]-b[1]).map(a=>a[0]);if(!L.length)return;
+h+=`<h4 class="cls">${c}</h4>`;L.forEach(x=>{const s=S.sel[x.id],r=s&&calc(s);if(s)n++;if(r){q++;lv[r.niv]++}
+h+=`<div class="hz ${s?"on":""}"><label><input type="checkbox" ${s?"checked":""} ${x.cu?"disabled":""} onchange="tg('${x.id}')"><span><b>${esc(x.p)}</b>${x.cu?'<span class="tag" style="background:var(--sand)">Agregado por usted</span>':sug(x)?'<span class="tag">Sugerido</span>':""}</span></label><div class="rk">⚠ <b>Riesgo:</b> ${esc(x.r)}</div>
+${s?`<div class="rt"><div class="f">${["nd","ne","nc"].map(f=>`<div><label>${{nd:"Deficiencia (controles actuales)",ne:"Exposición",nc:"Consecuencia"}[f]}</label>${sl(x.id,f,s[f])}</div>`).join("")}</div><label>Controles que ya existen (opcional)</label><input type="text" value="${esc(s.ctl||"")}" onchange="S.sel['${x.id}'].ctl=this.value">
+${r?`<div class="res" style="background:${LV[r.niv][2]}"><b>Nivel de riesgo ${r.niv}: ${LV[r.niv][0]}</b> · Probabilidad ${r.npi} (NP ${r.np}) · NR ${r.nr}<br>${LV[r.niv][1]}</div>`:'<div class="note">Complete las tres calificaciones para ver el nivel de riesgo.</div>'}${x.cu?`<button class="btn r" style="margin-top:8px;padding:5px 10px" onclick="rmCu('${x.id}')">Quitar</button>`:""}</div>`:""}</div>`})});
+$("hz").innerHTML=h;$("live").innerHTML=`Marcados: <b>${n}</b> · Calificados: <b>${q}</b> · Nivel I: ${lv.I} · II: ${lv.II} · III: ${lv.III} · IV: ${lv.IV}`}
+function tg(id){if(S.sel[id])delete S.sel[id];else S.sel[id]={};drawH()}
+function st(id,f,v){S.sel[id][f]=+v||0;drawH()}
+function addCu(){const p=$("cp").value.trim(),r=$("cr").value.trim();if(p.length<4||r.length<4)return alert("Escriba el peligro y el riesgo.");const id="X"+Date.now();S.cu.push({id,c:$("ccl").value,p,r,a:"",k:[],cu:true});S.sel[id]={};$("cp").value=$("cr").value="";drawH()}
+function rmCu(id){S.cu=S.cu.filter(x=>x.id!=id);delete S.sel[id];drawH()}
+function limpiar(){["nom","cc","cargo","desc"].forEach(i=>$(i).value="");$("vin").value="";$("area").value="";$("cons").checked=false;S={sel:{},cu:[]};drawH()}
+function guardar(){const g=i=>$(i).value.trim(),m=[];
+if(g("nom").length<5)m.push("nombre completo");if(!/^\d{5,12}$/.test(g("cc")))m.push("cédula (solo números, 5 a 12 dígitos)");if(!$("vin").value)m.push("tipo de vinculación");if($("area").value.trim().length<3)m.push("área");if(g("cargo").length<3)m.push("cargo");if(g("desc").length<20)m.push("descripción del puesto (mínimo 20 caracteres)");if(!$("cons").checked)m.push("autorización de tratamiento de datos");
+const it=H.concat(S.cu).filter(x=>S.sel[x.id]);if(!it.length)m.push("al menos un peligro que aplique a su puesto");const inc=it.filter(x=>!calc(S.sel[x.id]));if(inc.length)m.push("calificar los "+inc.length+" peligros marcados (deficiencia, exposición y consecuencia)");
+if(m.length)return alert("Falta completar:\n- "+m.join("\n- "));
+const items=it.map(x=>{const s=S.sel[x.id],r=calc(s);return{c:x.c,p:x.p,r:x.r,o:x.cu?"Agregado por el trabajador":"Catálogo",ctl:s.ctl||"",nd:s.nd,ne:s.ne,nc:s.nc,np:r.np,npi:r.npi,nr:r.nr,niv:r.niv}});
+const rec={f:new Date().toLocaleString("es-CO"),n:g("nom"),cc:g("cc"),v:$("vin").value,a:g("area"),car:g("cargo"),d:g("desc"),items};
+const i=REG.findIndex(x=>x.cc==rec.cc);if(i>=0)REG[i]=rec;else REG.push(rec);
+persist();limpiar();drawAll();window.scrollTo(0,0);alert(i>=0?"Evaluación guardada (reemplazó la anterior con esa cédula). ¡Gracias por participar!":"Evaluación guardada. ¡Gracias por participar!")}
+let bc=0;function borrar(){if(!REG.length)return;if(!bc){bc=1;alert("Se borrarán TODOS los registros de este navegador. Presione de nuevo el botón Borrar todos los registros para confirmar.");setTimeout(()=>bc=0,8000);return}bc=0;REG=[];persist();drawAll();alert("Registros borrados.")}
+const cnt=(a,f)=>{const m={};a.forEach(x=>{const k=f(x);m[k]=(m[k]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])};
+const br=(a,col)=>{const mx=Math.max(1,...a.map(x=>x[1]));return a.length?a.map(([l,v,c])=>`<div class="br"><span>${esc(l)}</span><div class="bar"><i style="width:${v/mx*100}%;background:${c||col}"></i></div><b>${v}</b></div>`).join(""):'<span class="note">Sin datos</span>'};
+function ind(){const T=REG.length,pl=REG.filter(r=>r.v=="Personal de planta").length,co=T-pl,its=REG.flatMap(r=>r.items.map(i=>({...i,a:r.a}))),na=its.filter(i=>i.niv=="I"||i.niv=="II"),pt=Math.round(T/(META.p+META.c)*1000)/10;
+const top=cnt(its,i=>i.p)[0],cl=cnt(its,i=>i.c)[0],ar=na_(na)[0],L=[];
+L.push(["Participación total",`${T} de ${META.p+META.c} personas (${pt} %)`,!T?"Sin datos.":pt>=80?"Cobertura alta: la identificación es representativa.":pt>=50?"Cobertura media: ampliar la convocatoria.":"Cobertura baja: reforzar la convocatoria para cumplir la participación exigida por el art. 2.2.4.6.15."]);
+L.push(["Participación personal de planta",`${pl} de ${META.p} (${Math.round(pl/META.p*1000)/10} %)`,pl>=META.p?"Completa.":`Faltan ${META.p-pl} por diligenciar.`]);
+L.push(["Participación contratistas",`${co} de ${META.c} (${Math.round(co/META.c*1000)/10} %)`,co>=META.c?"Completa.":`Faltan ${META.c-co} por diligenciar.`]);
+L.push(["Peligros identificados",String(its.length),"Total de peligros marcados por los trabajadores."]);
+L.push(["Riesgos no aceptables (nivel I y II)",its.length?`${na.length} (${Math.round(na.length/its.length*1000)/10} %)`:"0","Requieren intervención prioritaria y validación por el responsable del SG-SST y el COPASST."]);
+L.push(["Peligro más reportado",top?`${top[0]} (${top[1]})`:"Sin datos","Priorizar controles y capacitación sobre este peligro."]);
+L.push(["Clasificación predominante",cl?`${cl[0]} (${cl[1]})`:"Sin datos","Orienta los programas de vigilancia y prevención."]);
+L.push(["Área con más riesgos no aceptables",ar?`${ar[0]} (${ar[1]})`:"Sin datos","Primera área a intervenir."]);return{T,pl,co,its,na,pt,L}}
+function drawI(){const x=ind(),lv=["I","II","III","IV"].map(k=>[`Nivel ${k}: ${LV[k][0]}`,x.its.filter(i=>i.niv==k).length,LV[k][2]]);
+$("ind").innerHTML=`<div class="grid" style="margin-bottom:16px"><div class="k"><div class="note">EVALUACIONES</div><div class="big">${x.T}</div></div><div class="k" style="border-top-color:var(--green)"><div class="note">PARTICIPACIÓN (de 138)</div><div class="big">${x.pt} %</div></div><div class="k" style="border-top-color:var(--sand)"><div class="note">PELIGROS IDENTIFICADOS</div><div class="big">${x.its.length}</div></div><div class="k" style="border-top-color:var(--red)"><div class="note">RIESGOS NIVEL I Y II</div><div class="big">${x.na.length}</div></div></div>
+<div class="grid"><div class="card"><h3>Participación</h3>${br([["Planta ("+x.pl+"/"+META.p+")",x.pl],["Contratistas ("+x.co+"/"+META.c+")",x.co]],"#0B86D9")}</div><div class="card"><h3>Nivel de riesgo (GTC 45)</h3>${br(lv)}</div><div class="card"><h3>Peligros por clasificación</h3>${br(cnt(x.its,i=>i.c).map(a=>[a[0],a[1]]),"#2F6B3A")}</div><div class="card"><h3>Riesgos I y II por área</h3>${br(na_(x.na),"#B3412F")}</div></div>
+<div class="card"><h3>Interpretación de indicadores</h3><table>${x.L.map(r=>`<tr><td><b>${r[0]}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("")}</table></div>`}
+function drawR(){$("reg").innerHTML=REG.length?`<table><tr><th>Fecha</th><th>Nombre</th><th>Cédula</th><th>Vinculación</th><th>Área</th><th>Peligros</th><th>Nivel I-II</th></tr>${REG.map(r=>`<tr><td>${esc(r.f)}</td><td>${esc(r.n)}</td><td>•••${esc(r.cc.slice(-3))}</td><td>${esc(r.v)}</td><td>${esc(r.a)}</td><td>${r.items.length}</td><td>${r.items.filter(i=>i.niv=="I"||i.niv=="II").length}</td></tr>`).join("")}</table>`:'<span class="note">Aún no hay evaluaciones guardadas.</span>'}
+const drawAll=()=>{drawI();drawR()};
+const EH=["Fecha","Nombre","Cédula","Vinculación","Área","Cargo","Descripción del puesto","Clasificación","Peligro","Riesgo / daño posible","Origen","Controles existentes","Deficiencia (ND)","Exposición (NE)","Probabilidad (NP)","Interpretación NP","Consecuencia (NC)","Nivel de riesgo (NR)","Nivel","Aceptabilidad","Intervención"];
+const evRows=()=>[EH].concat(REG.flatMap(r=>r.items.map(i=>[r.f,r.n,r.cc,r.v,r.a,r.car,r.d,i.c,i.p,i.r,i.o,i.ctl,i.nd,i.ne,i.np,i.npi,i.nc,i.nr,i.niv,LV[i.niv][0],LV[i.niv][1]])));
+async function dl(name,data){const blob=data instanceof Blob?data:new Blob([data]);let d=null;try{d=window.claude?await claude.use("downloads"):null}catch(e){}
+if(d){try{await d.save({filename:name,data:blob});return}catch(e){if(e&&e.code=="declined")return}}
+const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+let m=$("dlmsg");if(!m){m=document.createElement("div");m.id="dlmsg";m.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:#1F3A5F;color:#fff;padding:12px 16px;border-radius:10px;z-index:99;font-size:14px";document.body.appendChild(m)}
+m.innerHTML=`Archivo listo: <b>${name}</b>. Si no se descargó, <a style="color:#D8C7A3" href="${u}" download="${name}" target="_blank">haga clic aquí</a>. <u style="cursor:pointer" onclick="this.parentNode.remove()">Cerrar</u>`}
+function xlsx(){if(!REG.length)return alert("Aún no hay evaluaciones guardadas.");if(!window.XLSX)return csv();const x=ind(),wb=XLSX.utils.book_new();
+const tr=[["Fecha","Nombre","Cédula","Vinculación","Área","Cargo","Descripción del puesto","Peligros identificados","Nivel I","Nivel II","Nivel III","Nivel IV"]].concat(REG.map(r=>[r.f,r.n,r.cc,r.v,r.a,r.car,r.d,r.items.length,...["I","II","III","IV"].map(k=>r.items.filter(i=>i.niv==k).length)]));
+const a=XLSX.utils.aoa_to_sheet(evRows()),b=XLSX.utils.aoa_to_sheet(tr),c=XLSX.utils.aoa_to_sheet([["Indicadores · Auto Evaluación de Peligros y Riesgos · Biblioteca Departamental Jorge Garcés Borrero"],["Generado: "+new Date().toLocaleString("es-CO")],[],["Indicador","Valor","Interpretación"]].concat(x.L));
+a["!cols"]=[18,24,12,16,26,20,40,20,40,40,16,30,8,8,8,10,8,10,6,26,40].map(w=>({wch:w}));b["!cols"]=[18,24,12,16,26,20,40,10,8,8,8,8].map(w=>({wch:w}));c["!cols"]=[{wch:38},{wch:44},{wch:90}];
+XLSX.utils.book_append_sheet(wb,a,"Evaluaciones");XLSX.utils.book_append_sheet(wb,b,"Trabajadores");XLSX.utils.book_append_sheet(wb,c,"Indicadores");
+dl("autoevaluacion-peligros-riesgos.xlsx",XLSX.write(wb,{type:"array",bookType:"xlsx"}))}
+function csv(){if(!REG.length)return alert("Aún no hay evaluaciones guardadas.");const q=v=>`"${String(v).replace(/"/g,'""')}"`;dl("autoevaluacion-peligros-riesgos.csv","\ufeff"+evRows().map(r=>r.map(q).join(";")).join("\r\n"))}
+window.alert=t=>{let m=$("toast");if(!m){m=document.createElement("div");m.id="toast";document.body.appendChild(m)}const ok=/guardada|borrados/i.test(t);m.style.cssText="position:fixed;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top,0px));background:"+(ok?"#2F6B3A":"#B3412F")+";color:#fff;padding:14px 18px;border-radius:12px;z-index:99;font-size:15px;box-shadow:0 10px 24px #0008;max-height:70vh;overflow:auto";m.innerHTML=esc(t).replace(/\n/g,"<br>")+'<br><u style="cursor:pointer" onclick="this.parentNode.remove()">Cerrar</u>'};
+drawH();drawAll();
+</script></body></html>
